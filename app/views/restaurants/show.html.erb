@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <%= image_tag(url_for @restaurant.logo) %>
+  <%= image_tag @restaurant.logo.variant(resize_to_limit: [600, 600]) %>
 </p>
 
 <p>
