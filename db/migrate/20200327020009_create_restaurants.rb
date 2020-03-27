@@ -1,3 +1,6 @@
+# frozen_string_literal: true
+
+# Creates restaurant table.
 class CreateRestaurants < ActiveRecord::Migration[6.0]
   def change
     create_table :restaurants do |t|
