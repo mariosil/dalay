@@ -1,6 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <%= image_tag(url_for @restaurant.logo) %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @restaurant.name %>
 </p>
