@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Dish Groups</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @dish_groups.each do |dish_group| %>
+      <tr>
+        <td><%= dish_group.name %></td>
+        <td><%= link_to 'Show', dish_group %></td>
+        <td><%= link_to 'Edit', edit_dish_group_path(dish_group) %></td>
+        <td><%= link_to 'Destroy', dish_group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Dish Group', new_dish_group_path %>
