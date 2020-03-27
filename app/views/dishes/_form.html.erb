@@ -21,6 +21,14 @@
     <%= form.text_field :description %>
   </div>
 
+  <div class="field">
+    <%= form.label :photo %>
+    <%= form.file_field :photo %>
+    <p>
+      <%= image_tag dish.photo.variant(resize_to_limit: [600, 600]) %>
+    </p>
+  </div>
+
   <div class="actions">
     <%= form.submit %>
   </div>
