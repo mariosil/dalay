@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_27_230850) do
+ActiveRecord::Schema.define(version: 2020_03_27_234233) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name", null: false
@@ -54,10 +54,23 @@ ActiveRecord::Schema.define(version: 2020_03_27_230850) do
   create_table "items", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.integer "quantity"
     t.float "price"
-    t.bigint "dish_id", null: false
+    t.bigint "dish_id"
+    t.bigint "order_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["dish_id"], name: "index_items_on_dish_id"
+    t.index ["order_id"], name: "index_items_on_order_id"
+  end
+
+  create_table "orders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+    t.datetime "date"
+    t.float "sub_total"
+    t.float "taxes"
+    t.float "total"
+    t.bigint "restaurant_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
   end
 
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
@@ -70,5 +83,5 @@ ActiveRecord::Schema.define(version: 2020_03_27_230850) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "items", "dishes"
+  add_foreign_key "orders", "restaurants"
 end
