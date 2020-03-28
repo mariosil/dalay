@@ -3,6 +3,7 @@
 # Maps Item entity to items table.
 class Item < ApplicationRecord
   belongs_to :dish
+  belongs_to :order
 
   before_save :set_price
   before_update :set_price

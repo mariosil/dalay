@@ -6,7 +6,8 @@ class CreateItems < ActiveRecord::Migration[6.0]
     create_table :items do |t|
       t.integer :quantity
       t.float :price
-      t.references :dish, null: false, foreign_key: true
+      t.belongs_to :dish
+      t.belongs_to :order
 
       t.timestamps
     end
