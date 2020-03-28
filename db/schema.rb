@@ -41,7 +41,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_234233) do
 
   create_table "dishes", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.bigint "dish_group_id"
     t.bigint "restaurant_id"
     t.datetime "created_at", precision: 6, null: false
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_03_27_234233) do
 
   create_table "restaurants", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
     t.string "name"
-    t.string "description"
+    t.text "description"
     t.string "address"
     t.string "phone"
     t.datetime "created_at", precision: 6, null: false

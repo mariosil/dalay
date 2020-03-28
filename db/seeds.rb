@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+4.times do |index|
+  restaurant = Restaurant.create name: Faker::Restaurant.name,
+                                 description: Faker::Restaurant.description,
+                                 address: Faker::Address.street_address,
+                                 phone: Faker::PhoneNumber.phone_number
+  logo = File.open(Rails.root.join('db', 'seeds_logos', "logo_#{index}.jpg"))
+  restaurant.logo.attach(io: logo, filename: File.basename(logo))
+  print "Restaurant created: #{restaurant.name}\t"
+  puts "logo: #{restaurant.logo.attached?}"
+end
