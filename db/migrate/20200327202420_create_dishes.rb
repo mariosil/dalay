@@ -5,7 +5,7 @@ class CreateDishes < ActiveRecord::Migration[6.0]
   def change
     create_table :dishes do |t|
       t.string :name
-      t.string :description
+      t.text :description
 
       t.belongs_to :dish_group
       t.belongs_to :restaurant
