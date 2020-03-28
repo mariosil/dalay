@@ -34,9 +34,11 @@
   <div class="field">
     <%= form.label :logo %>
     <%= form.file_field :logo %>
-    <p>
-      <%= image_tag restaurant.logo.variant(resize_to_limit: [600, 600]) %>
-    </p>
+    <% if restaurant.logo.attached? %>
+      <p>
+        <%= image_tag restaurant.logo.variant(resize_to_limit: [600, 600]) %>
+      </p>
+    <% end %>
   </div>
 
   <div class="actions">
