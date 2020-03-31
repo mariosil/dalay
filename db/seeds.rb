@@ -204,3 +204,87 @@ dishes.each_with_index do |dish, index|
   photo = File.open(Rails.root.join('db', 'seeds_imgs', "ss_#{index}.jpg"))
   dish.photo.attach(io: photo, filename: File.basename(photo))
 end
+
+puts 'Generating deserts Dish payloads'
+deserts_group = dish_groups.shift
+deserts_dish_payloads = [
+  {
+    restaurant: restaurants[0],
+    dish_group: deserts_group,
+    name: 'No Bake Kool-Aid Pie',
+    description: 'Creamy, cool, and delicious with only 3 ingredients!',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[0],
+    dish_group: deserts_group,
+    name: 'Peanut Butter Stuffed Brownies',
+    description: 'Rich, fudge brownies that are stuffed with peanut butter cups, topped with melted chocolate and more peanut butter cups!',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[1],
+    dish_group: deserts_group,
+    name: 'Monster Cookie No Bake Bars',
+    description: 'All the flavors of classic monster cookies.',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[1],
+    dish_group: deserts_group,
+    name: 'Strawberry Cheesecake Lasagna',
+    description: 'Layers of fresh strawberries, sweet cream, and graham crackers are stacked high in this no-bake sweet treat.',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[2],
+    dish_group: deserts_group,
+    name: 'No Bake Mint Chocolate Chip Pie',
+    description: 'A creamy mint pie with chocolate chips, topped with Andes mints, all in an Oreo crust!',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[2],
+    dish_group: deserts_group,
+    name: 'Easy No Bake Avalanche Cookies',
+    description: 'Cookie version of Rocky Mountain Chocolate Factory’s Avalanche Bark!',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[3],
+    dish_group: deserts_group,
+    name: 'Gooey Brownie Pie',
+    description: 'A gooey chocolate brownie with a crackly top baked into a pie and topped with hot fudge.',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[3],
+    dish_group: deserts_group,
+    name: 'Reeses Fudge',
+    description: 'A layer of creamy peanut butter fudge topped with melted chocolate and peanut butter.',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[0],
+    dish_group: deserts_group,
+    name: 'Apple Pie',
+    description: 'Let the aroma of a freshly baked apple pie fill your home.​',
+    price: fake_price(range: 10..15)
+  },
+  {
+    restaurant: restaurants[1],
+    dish_group: deserts_group,
+    name: 'Almond Malai Kulfi',
+    description: 'Condensed milk, saffron, dry fruits are teamed together, chilled and served in a matki.',
+    price: fake_price(range: 10..15)
+  }
+]
+
+puts 'Creating deserts Dishes'
+dishes = Dish.create(deserts_dish_payloads)
+
+puts 'Attaching deserts  Dishes photos'
+dishes.each_with_index do |dish, index|
+  photo = File.open(Rails.root.join('db', 'seeds_imgs', "desert_#{index}.jpg"))
+  dish.photo.attach(io: photo, filename: File.basename(photo))
+end
