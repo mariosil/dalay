@@ -247,7 +247,7 @@ deserts_dish_payloads = [
     restaurant: restaurants[2],
     dish_group: deserts_group,
     name: 'Easy No Bake Avalanche Cookies',
-    description: 'Cookie version of Rocky Mountain Chocolate Factory’s Avalanche Bark!',
+    description: "Cookie version of Rocky Mountain Chocolate Factory's Avalanche Bark!",
     price: fake_price(range: 10..15)
   },
   {
@@ -268,7 +268,7 @@ deserts_dish_payloads = [
     restaurant: restaurants[0],
     dish_group: deserts_group,
     name: 'Apple Pie',
-    description: 'Let the aroma of a freshly baked apple pie fill your home.​',
+    description: 'Let the aroma of a freshly baked apple pie fill your home.',
     price: fake_price(range: 10..15)
   },
   {
@@ -286,5 +286,89 @@ dishes = Dish.create(deserts_dish_payloads)
 puts 'Attaching deserts  Dishes photos'
 dishes.each_with_index do |dish, index|
   photo = File.open(Rails.root.join('db', 'seeds_imgs', "desert_#{index}.jpg"))
+  dish.photo.attach(io: photo, filename: File.basename(photo))
+end
+
+puts 'Generating drinks Dish payloads'
+drinks_group = dish_groups.shift
+drinks_dish_payloads = [
+  {
+    restaurant: restaurants[0],
+    dish_group: drinks_group,
+    name: 'Mojito',
+    description: 'Classic cocktail for a party using fresh mint, white rum, sugar, zesty lime and cooling soda water.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[0],
+    dish_group: drinks_group,
+    name: 'Rhubarb gin',
+    description: 'Use seasonal rhubarb to make a G&T with a difference.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[1],
+    dish_group: drinks_group,
+    name: 'Sangria',
+    description: 'With red wine, Spanish brandy, sparkling water, cinnamon and chopped fruit.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[1],
+    dish_group: drinks_group,
+    name: 'Espresso martini',
+    description: 'Freshly brewed espresso, a dash of coffee liqueur and a simple sugar syrup.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[2],
+    dish_group: drinks_group,
+    name: 'Mudslide',
+    description: 'Creamy adults-only drink with the chocolate lover in your life.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[2],
+    dish_group: drinks_group,
+    name: 'Sex on the beach cocktail',
+    description: 'Combine vodka with peach schnapps and cranberry juice to make a classic sex on the beach cocktail',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[3],
+    dish_group: drinks_group,
+    name: 'Pink gin iced tea',
+    description: 'Blend pink gin with iced tea and you have this unique cocktail, made with spiced rum, elderflower and pink grapefruit.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[3],
+    dish_group: drinks_group,
+    name: 'Hurricane cocktail',
+    description: 'Our tropical, rum-based hurricane cocktail.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[0],
+    dish_group: drinks_group,
+    name: 'Pink negroni',
+    description: 'Go pink with this fabulous cocktail flavoured with pink gin, rose vermouth and Aperol.',
+    price: fake_price(range: 5..10)
+  },
+  {
+    restaurant: restaurants[1],
+    dish_group: drinks_group,
+    name: 'Vodka martini',
+    description: 'Vodka martini with our simple recipe for an elegant party tipple.',
+    price: fake_price(range: 5..10)
+  }
+]
+
+puts 'Creating drinks Dishes'
+dishes = Dish.create(drinks_dish_payloads)
+
+puts 'Attaching drink Dishes photos'
+dishes.each_with_index do |dish, index|
+  photo = File.open(Rails.root.join('db', 'seeds_imgs', "drink_#{index}.jpg"))
   dish.photo.attach(io: photo, filename: File.basename(photo))
 end
