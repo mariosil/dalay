@@ -1,0 +1,43 @@
+version: '2.17.3'
+
+services:
+  db:
+    image: 'mysql:8.0'
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USERNAME=root
+      - MYSQL_PASSWORD=root
+    expose:
+      - '3306'
+    ports:
+      - '3306:3306'
+    volumes:
+      - db_data:/var/run/mysqld
+    logging:
+      driver: none
+  
+  web:
+    build: ../
+    command: bundle exec rails s -p 3000 -e development -b '0.0.0.0'
+    environment:
+      - DB_USERNAME=root
+      - DB_PASSWORD=root
+      - DEV_DB_NAME=dalay_dev
+      - TEST_DB_NAME=dalay_test
+      - DB_PORT=3306
+      - DB_HOST=db
+      - RAILS_ENV=development
+      - RAILS_MAX_THREADS=5
+      - BUNDLE_PATH=/bundle
+    volumes:
+      - ../:/dalay
+      - bundle:/bundle
+    ports:
+      - '3000:3000'
+    depends_on:
+      - db
+
+volumes:
+  db_data:
+  bundle:
