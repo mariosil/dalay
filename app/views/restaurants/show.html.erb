@@ -1,15 +1,14 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <h1><%= @restaurant.name %></h1>  
+</p>
+
 <% if @restaurant.logo.attached? %>
   <p>
     <%= image_tag @restaurant.logo.variant(resize_to_limit: [600, 600]) %>
   </p>
 <% end %>
-
-<p>
-  <strong>Name:</strong>
-  <%= @restaurant.name %>
-</p>
 
 <p>
   <strong>Description:</strong>
@@ -26,5 +25,33 @@
   <%= @restaurant.phone %>
 </p>
 
-<%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
-<%= link_to 'Back', restaurants_path %>
+<p>
+  <%= link_to 'Edit', edit_restaurant_path(@restaurant) %> |
+  <%= link_to 'Back', restaurants_path %>
+</p>
+
+<hr>
+
+<p>
+  <h2>Menu</h2>
+
+  <% @dish_groups_hash.each do |dish_group_name, dishes| %>
+    <h3><%= dish_group_name %></h3>
+    <table>
+      <tbody>
+        <% dishes.each do |dish| %>
+          <tr>
+            <td><%= number_to_currency(dish.price) %></td>
+            <td><%= image_tag dish.photo.variant(resize_to_limit: [100, 100]) %></td>
+            <td>
+              <p>
+                <b><%= dish.name %></b><br/>
+                <%= dish.description %>
+              </p>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</p>

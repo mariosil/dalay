@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
   # GET /restaurants/1
   # GET /restaurants/1.json
   def show
+    set_dish_groups_hash
   end
 
   # GET /restaurants/new
@@ -70,5 +71,11 @@ class RestaurantsController < ApplicationController
     # Only allow a list of trusted parameters through.
     def restaurant_params
       params.require(:restaurant).permit(:name, :description, :address, :phone, :logo)
+    end
+
+    def set_dish_groups_hash
+      @dish_groups_hash = DishGroup.all.each_with_object({}) do |dg, hash|
+        hash[dg.name] = @restaurant.dishes.by_dish_group(dg)
+      end
     end
 end
